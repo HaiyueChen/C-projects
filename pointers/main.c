@@ -5,13 +5,11 @@
 
 int main(){
     struct linkedList *l1;
-    l1 = malloc(sizeof(struct linkedList));
-    init_list(l1);
+    l1 = init_list(l1);
+    int test_a[] = {1,2,3,4};
+    add(l1, (void*) &test_a[0]);
+    add(l1, (void*) &test_a[1]);
 
-    printf("%d\n",get_head(l1));
-
-
-    free_head(l1);
-    free(l1);
+    printf("%d\n",*(int *)get_tail(l1));
     return 0;
 }
