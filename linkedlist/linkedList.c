@@ -1,15 +1,14 @@
 #include <stdio.h>
 
-struct list_node{
-    struct list_node *prev;
-    struct list_node *next;
-    void *data;
-
+struct node{
+    struct node *prev;
+    struct node *next;
+    void* data;
 };
 
 struct linkedList{
-    struct list_node *head;
-    struct list_node *tail;
+    struct node *head;
+    struct node *tail;
     int size;
 
 };
@@ -20,19 +19,29 @@ struct linkedList* init_list(){
     return new_list;
 }
 
-struct list_node* init_node(void* new_data){
-    struct list_node* new_node = malloc(sizeof(struct list_node));
+struct node* init_node(void* new_data){
+    struct node* new_node = malloc(sizeof(struct node));
     new_node->data = new_data;
     return new_node;
 }
 
-void free_node(struct* list_node){
-    free(list_node->prev);
-    free(list_node->next);
-    free(list_node->data);
-    free(list_node);
+void free_node(struct node* node){
+    free(node->data);
+    free(node);
 }
 
+//
+void free_list(struct linkedList* list){
+
+}
+
+void print_list(struct linkedList* list){
+    struct node* itt = list->head;
+    while(itt){
+        printf("%p \n", &(*itt));
+        itt = itt->next;
+    }
+}
 
 
 int add(struct linkedList *l, void* new_data){
@@ -47,7 +56,7 @@ int add(struct linkedList *l, void* new_data){
         l->tail->prev = l->head;
     }
     else{
-        struct list_node* new_node = init_node(new_data);
+        struct node* new_node = init_node(new_data);
         l->tail->next = new_node;
         new_node->prev = l->tail;
         l->tail = new_node;
