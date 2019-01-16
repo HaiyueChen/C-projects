@@ -6,7 +6,7 @@
 int main(int argc, char const *argv[])
 {
     /* code */
-    int* a = malloc(3 * sizeof(int));
+    int* a = calloc(2, sizeof(int));
     free(a);
     return 0;
 }
